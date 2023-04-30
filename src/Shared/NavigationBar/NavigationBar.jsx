@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import { FaUserCircle } from 'react-icons/fa';
+import { AuthContext } from '../../Providers/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const NavigationBar = () => {
+    const {user,logOut} = useContext(AuthContext)
+
+    const handleLogOut = () =>{
+      logOut()
+      .then()
+      .catch(error=>{
+        console.error(error)
+      })
+    }
+
     return (
         <Container>
              <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -10,7 +22,7 @@ const NavigationBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mx-auto">
-            <Nav.Link href="#features"><Link to="/">Home</Link></Nav.Link>
+             <Link to="/category/0">Home</Link>
             <Nav.Link href="#pricing">About</Nav.Link>
             <Nav.Link href="#pricing">Career</Nav.Link>
           </Nav>
@@ -19,12 +31,10 @@ const NavigationBar = () => {
             user&&
             <Nav.Link href="#deets"><FaUserCircle style={{fontSize:'2rem'}}></FaUserCircle></Nav.Link>
           }
-            <Nav.Link eventKey={2} href="#memes">
             {user?
-            <Button variant="dark">Logout</Button>:
-            <Button variant="dark">Login</Button>
+            <Button onClick={handleLogOut} variant="danger">Logout</Button>:
+            <Button variant="danger"><Link to="/login" className='text-white'>Login</Link></Button>
             }
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

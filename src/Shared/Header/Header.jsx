@@ -2,16 +2,10 @@ import React from 'react';
 import logo from '../../assets/logo.png'
 import moment from 'moment';
 import Button from 'react-bootstrap/Button';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Marquee from "react-fast-marquee";
-import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../../Providers/AuthProvider';
 
 const Header = () => {
-
-    const {user} = useContext(AuthContext)
-
     return (
         <Container>
             <div className='text-center'>
